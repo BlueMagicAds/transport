@@ -6,7 +6,7 @@
 
         <!-- Panel Title -->
         <div class="panel-heading">
-            <h2 class="panel-title text-center">Find Teammates! (Map Query) <span class="glyphicon glyphicon-search"></span></h2>
+            <h2 class="panel-title text-center">Locate Child<span class="glyphicon glyphicon-search"></span></h2>
         </div>
 
         <!-- Panel Body -->
@@ -16,6 +16,10 @@
             <form name ="queryForm">
 
                 <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                <div class="form-group">
+                    <label for="username">Child Name </label> <!--changed -->
+                    <input type="text" class="form-control" id="username" placeholder="David" ng-model="formData.username" required>
+                </div>
                 <div class="form-group">
                     <label for="latitude">Your Latitude</label>
                     <input type="text" class="form-control" id="latitude" placeholder="-25.817" ng-model="formData.latitude" readonly>
