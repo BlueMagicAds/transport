@@ -2,12 +2,12 @@
 
 module.exports = {
 
-    mongolab:
+    /*mongolab:
     {
         name: "mongolab",
         url: "mongodb://sa.bluemagicads@gmail.com:FrankLG63@@ds245250.mlab.com:45250/heroku_mflj00qd",
         port: 27017
-    },
+    },*/
 
     local:
     {
