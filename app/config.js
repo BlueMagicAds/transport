@@ -2,25 +2,25 @@
 
 module.exports = {
 
-    mongolab:
+    /*mongolab:
     {
         name: "mongolab",
         url: "mongodb://sa.bluemagicads@gmail.com:FrankLG63@@ds245250.mlab.com:45250/heroku_mflj00qd",
         port: 27017
-    },
+    },*/
 
     local:
     {
-        name: "scotch-user-map-local",
-        url: "mongodb://localhost/MeanMapApp",
+        name: "transport",
+        url: "mongodb://localhost/transapp",
         port: 27017
     },
 
-    localtest:
+   /* localtest:
     {
-        name: "scotch-user-map-local",
-        url: "mongodb://localhost/MeanMapAppTest",
+        name: "transport",
+        url: "mongodb://localhost/transapptest",
         port: 27017
-    }
+    }*/
 
 };

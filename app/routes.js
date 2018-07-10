@@ -1,6 +1,9 @@
 // Dependencies
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
+var Vehicle         = require('./model.js');
+var Driver          = require('./model.js');
+var storePass       = require('./users.js');
 
 
 // Opens App Routes
@@ -29,15 +32,24 @@ module.exports = function(app) {
     app.post('/users', function(req, res){
 
         // Creates a new User based on the Mongoose schema and the post bo.dy
-        var newuser = new User(req.body);
+        if(req.body.userName && req.body.email && req.body.password && req.body.gender && req.body.age && req.body.address) {
+            var userData = {
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+                gender: req.body.gender,
+                age: req.body.age,
+                address: req.body.address
+            }
+        }
 
         // New User is saved in the db.
-        newuser.save(function(err){
+        User.create(userData, function(err, user){
             if(err)
-                res.send(err);
+                return next(err);
             else
                 // If no errors are found, it responds with a JSON of the new user
-                res.json(req.body);
+                res.json(req.body); //Register Kids
         });
     });
 
@@ -119,4 +131,54 @@ module.exports = function(app) {
                 res.json(req.body);
         });
     });
+
+    //Driver queries
+    //----------------------------------------------------------
+    //Create a new driver;
+    app.post('/newDriver', function(req, res) {
+        var newDriver = new Driver(req.body);
+
+        newDriver.save(function(err) {
+            if(err) {
+                res.status(403).send(err);
+            }
+
+            else {
+                res.status(200).json(req.body);
+            }
+        });
+    });
+
+    app.get('/driverInfo/:driverID', function(req, res) {
+        var driverID = req.params.driverID;
+
+        Driver.findByID(driverID, function(err, driver) {
+            if(err) {
+                res.send(err);
+            }
+
+            else {
+                res.status(200).json(driver);
+            }
+        });
+    });
+
+    //Vehicle queries
+    //----------------------------------------------------------
+    //Add new vehicle
+    app.post('/newVehicle', function(req, res) {
+        var newVehicle = new Vehicle(req.body);
+
+        newVehicle.save(function(err) {
+            if(err) {
+                res.send(err);
+            }
+
+            else {
+                res,send(req.body);
+            }
+        });
+    });
+
+
 };
